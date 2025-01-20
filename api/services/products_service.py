@@ -1,3 +1,4 @@
+import os
 import traceback
 from fastapi import Depends, HTTPException
 from api.models.product import Product
@@ -43,12 +44,14 @@ def create(schema: ProductCreateSchema, db: Session) -> Product:
 
 def update(id:int, schema: ProductUpdateSchema, db: Session) -> Product:
     product_dict = schema.dict()
-    print(product_dict)
     product = find(id,db=db)
     
     if product_dict['ean'] is not None:
         check_ean(product_dict['ean'], db=db)
     
+    if product_dict['path_image'] is not None:
+        delete_old_image(product, db=db)
+        
     for key, value in product_dict.items():
         if value is not None and hasattr(product, key):
             setattr(product, key, value)
@@ -62,3 +65,10 @@ def check_ean(ean:str, db:Session):
     
     if product_check is not None:
         raise HTTPException(status_code=422, detail="EAN already taken")
+
+def delete_old_image(product: Product, db: Session) -> None:
+    
+    image_path = os.path.join('static/', product.path_image)
+
+    if os.path.exists(image_path):
+        os.remove(image_path)

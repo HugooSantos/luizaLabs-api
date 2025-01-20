@@ -10,7 +10,6 @@ def get_db():
         db.close()
 
 def check_db_exist():        
-    print(engine.url)
     if not database_exists(engine.url):
         create_database(engine.url)
         Base.metadata.create_all(bind=engine)
