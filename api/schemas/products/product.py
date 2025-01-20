@@ -7,6 +7,7 @@ class ProductSchema(BaseModel):
     ean: str
     price: float
     description: str
+    path_image: str
     active: bool
     sales_location: str
     created_at: datetime.datetime
