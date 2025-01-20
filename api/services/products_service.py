@@ -1,15 +1,12 @@
 import os
-import traceback
-from fastapi import Depends, HTTPException
+from fastapi import HTTPException
 from api.models.product import Product
 from api.repositories import product_repository
 from api.schemas.paginated_response import PaginatedResponse
 from api.schemas.products.create_product import ProductCreateSchema
 from api.schemas.products.product_filter import ProductFilterSchema
-from fastapi import Depends
 from sqlalchemy.orm import Session
 from api.schemas.products.product import ProductSchema
-from sqlalchemy.orm.query import Query
 
 from api.schemas.products.update_product import ProductUpdateSchema
 
