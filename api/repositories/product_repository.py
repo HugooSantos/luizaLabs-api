@@ -12,6 +12,7 @@ def get_all(filters: ProductFilterSchema, db: Session) -> tuple:
     sales_location = filters.sales_location
     
     query = db.query(Product).order_by(Product.id.desc())
+    
     if is_active is not None:
         query = query.filter(Product.active == is_active)
     if search is not None:

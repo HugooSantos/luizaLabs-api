@@ -2,13 +2,16 @@ import os
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
+from api.middlewares import add_cors_middleware
 from api.routers import images, products
 
 app = FastAPI()
 
+add_cors_middleware(app)
+
 app.include_router(products.router, prefix="/products", tags=["products"])
 app.include_router(images.router, prefix="/images", tags=["images"])
-app.mount("/image", StaticFiles(directory=os.path.abspath("static")), name="image")
+app.mount("/static", StaticFiles(directory=os.path.abspath("static")), name="image")
 
 @app.get("/")
 def root():
