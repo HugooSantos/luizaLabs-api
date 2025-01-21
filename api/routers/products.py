@@ -29,14 +29,14 @@ def find(
 
 
 @router.post("/", response_model=ProductSchema, status_code=200)
-def find(
+def create(
     schema: ProductCreateSchema,
     db: Session = Depends(get_db)
 ) -> ProductSchema:
     return products_service.create(schema=schema, db=db)
  
 @router.put("/{id}", response_model=ProductSchema, status_code=200)
-def find(
+def update(
     id:int,
     schema: ProductUpdateSchema,
     db: Session = Depends(get_db)
