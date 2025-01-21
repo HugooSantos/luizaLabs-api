@@ -2,7 +2,9 @@
 
 ## Descrição
 
-Esta API foi desenvolvida utilizando **FastAPI** para gerenciar o cadastro de produtos, permitindo realizar operações como criação, consulta, atualização.
+Esta API foi desenvolvida utilizando **FastAPI** para gerenciar o cadastro de produtos, permitindo realizar operações como criação, consulta, atualização e validação de produtos.
+
+O frontend que consome essa API está disponível no repositório [**LuizaLabs Frontend**](https://github.com/HugooSantos/luizaLabs-frontend).
 
 ## Estrutura do Banco de Dados 🗄️
 
